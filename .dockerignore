@@ -1,0 +1,8 @@
+/target
+/LICENSE
+/README.md
+/fly.toml
+.github
+.git
+.env
+.dockerignore

@@ -1,0 +1,9 @@
+app = "disteam-bot"
+primary_region = "nrt"
+kill_signal = "SIGINT"
+kill_timeout = "10s"
+
+[experimental]
+auto_rollback = true
+
+[build]
