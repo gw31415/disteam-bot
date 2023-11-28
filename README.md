@@ -1,5 +1,5 @@
 # Disteam bot
-
+[![Deploy to Fly](https://github.com/gw31415/disteam-bot/actions/workflows/fly.yml/badge.svg)](https://github.com/gw31415/disteam-bot/actions/workflows/fly.yml)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 - [INVITE LINK](https://discord.com/api/oauth2/authorize?client_id=1179069630728388759&permissions=268435472&scope=bot)
@@ -8,9 +8,10 @@
 
 ## コマンド一覧
 
-- `/mkteam repub`: チームメンバーがチャンネル作成権限を得ます。
-- `/mkteam feudal`: 代表者がチャンネル作成権限を持ちます。
-- `/mkteam monarchy`: チャンネル作成権限を与えません。
+- `/mkteam`: チームを作成します。
+    - `/mkteam repub`: チームメンバーがチャンネル作成権限を得ます。
+    - `/mkteam feudal`: 代表者がチャンネル作成権限を持ちます。
+    - `/mkteam monarchy`: チャンネル作成権限を与えません。
 
 ## デプロイ
 
