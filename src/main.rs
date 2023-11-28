@@ -13,7 +13,11 @@ type Data = ();
 type Context<'a> = poise::Context<'a, Data, Error>;
 
 /// チームを作成します。
-#[poise::command(slash_command, subcommands("repub", "monarchy", "feudal"))]
+#[poise::command(
+    slash_command,
+    subcommands("repub", "monarchy", "feudal"),
+    default_member_permissions = "MANAGE_GUILD"
+)]
 async fn mkteam(_ctx: Context<'_>) -> Result<(), Error> {
     Ok(())
 }
@@ -41,7 +45,14 @@ async fn feudal(
     #[description = "チーム名"] name: String,
     #[description = "管理者"] manager: User,
 ) -> Result<(), Error> {
-    util::mkteam(ctx, name, ManagementStyle::Feudal { manager: manager.id }).await
+    util::mkteam(
+        ctx,
+        name,
+        ManagementStyle::Feudal {
+            manager: manager.id,
+        },
+    )
+    .await
 }
 
 #[tokio::main]
