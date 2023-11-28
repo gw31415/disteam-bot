@@ -8,7 +8,7 @@
 
 ## コマンド一覧
 
-- `/mkteam`: チームを作成します。
+- `/mkteam`: チームを作成します。 (`MANAGE_GUILD`が必要です)
     - `/mkteam repub`: チームメンバーがチャンネル作成権限を得ます。
     - `/mkteam feudal`: 代表者がチャンネル作成権限を持ちます。
     - `/mkteam monarchy`: チャンネル作成権限を与えません。
