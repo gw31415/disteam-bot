@@ -35,10 +35,14 @@ pub async fn mkteam(ctx: Context<'_>, name: String, style: ManagementStyle) -> R
             let view = Permissions::VIEW_CHANNEL | Permissions::CONNECT;
 
             let mut permissions = vec![
-                // チームは閲覧許可
+                // チームの権限
                 PermissionOverwrite {
                     kind: serenity::PermissionOverwriteType::Role(role.id),
-                    allow: view,
+                    allow: if let ManagementStyle::Repub = style {
+                        view | Permissions::MANAGE_CHANNELS
+                    } else {
+                        view
+                    },
                     deny: Permissions::empty(),
                 },
                 // @everyoneは閲覧禁止
@@ -51,24 +55,13 @@ pub async fn mkteam(ctx: Context<'_>, name: String, style: ManagementStyle) -> R
                     allow: Permissions::empty(),
                 },
             ];
-
-            match style {
-                // Repub の場合はチャンネルの作成権限を与える
-                ManagementStyle::Repub => {
-                    permissions.push(PermissionOverwrite {
-                        kind: serenity::PermissionOverwriteType::Role(role.id),
-                        allow: Permissions::MANAGE_CHANNELS,
-                        deny: Permissions::empty(),
-                    });
-                }
-                ManagementStyle::Feudal { manager } => {
-                    permissions.push(PermissionOverwrite {
-                        kind: serenity::PermissionOverwriteType::Member(manager),
-                        allow: Permissions::MANAGE_CHANNELS,
-                        deny: Permissions::empty(),
-                    });
-                }
-                ManagementStyle::Monarchy => (),
+            if let ManagementStyle::Feudal { manager } = style {
+                // 管理者モードだとチャンネル作成権限を付与
+                permissions.push(PermissionOverwrite {
+                    kind: serenity::PermissionOverwriteType::Member(manager),
+                    allow: Permissions::MANAGE_CHANNELS,
+                    deny: Permissions::empty(),
+                });
             }
 
             permissions
